@@ -1,19 +1,17 @@
 # My Personal Project
 
 What will the application do?
-This application will run a game, and allow players to continue where they started, save the games
-and start new games. 
+This application will run a tower defence game, players will try to defend their towers from monsters that will attack the towers. Each player will be able to continue where they started, and save their game. There will be three types of buildings and two types of monsters, buying buildings costs money, and killing monsters gives you money. 
+
 Who will use it?
-Gamers that would like to try out this game, would play this game.
+Gamers that would like to try out this game, would play this game. They will experience joy in defending their towers from monsters. There could be a high score board, and players will try to survives as many rounds as possible. 
 
 Why is this project of interest to you?
-I have previous experiences in game design and development, so this is interesting for me.
+I have previous experiences in game design and development, so this is interesting for me. I always wanted to develop my own game, and this would be a really good chance for me to develop my projects. 
 
 ## Kasper's Personal Project
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
-
-An example of text with **bold** and *italic* fonts.  
+A *required* list:
+- As a user, I would want to add new **houses** and **towers** to the board.
+- As a user, I would want to earn money from killing **enemys**.
+- AS a user, I would want to **save** my game and start from where I ended.
