@@ -6,13 +6,17 @@ public class GoldMine implements Buildings{
     private int produceSpeed;
     private int cost;
     private boolean status;
+    private int num;
+    private String type;
 
-    public GoldMine(Position position){
+    public GoldMine(int num){
         this.health = 200;
         this.position = position;
         this.produceSpeed = 10;
         this.cost = 300;
         this.status = true;
+        this.num = num;
+        this.type = "Gold Mine";
     }
 
     public int getHealth() {
@@ -32,6 +36,21 @@ public class GoldMine implements Buildings{
 
     public Position getPosition() {
         return position;
+    }
+
+    @Override
+    public int getNum() {
+        return num;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public int getCost() {
+        return cost;
     }
 
 }

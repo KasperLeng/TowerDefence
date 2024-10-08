@@ -8,8 +8,11 @@ public class ArcherTower implements Buildings {
     private int attackSpeed;
     private int cost;
     private boolean status;
+    private int num;
+    private String type;
+
     
-    public ArcherTower(Position position) {
+    public ArcherTower(int num) {
         this.health = 100;  // Starting health of Archer Tower
         this.position = position; 
         this.range = 5;     // Attack range of archer tower
@@ -17,6 +20,8 @@ public class ArcherTower implements Buildings {
         this.attackSpeed = 2;  // Example attack speed
         this.cost = 200;    // Example cost
         this.status = true;
+        this.num = num; // Tower count
+        this.type = "Archer Tower";
     }
     
     @Override
@@ -45,4 +50,21 @@ public class ArcherTower implements Buildings {
             target.takeDamage(this.damage);
         }
     }
+
+    @Override
+    public int getNum(){
+        return num;
+    }
+
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public int getCost() {
+        return cost;
+    }
+
+    
 }
