@@ -67,6 +67,10 @@ public class TowerDefenceGame {
             startGame();
         }
 
+        else if(command.equals("p")){
+           gameBoard.printBoard();
+        }
+
         else if(command.equals("m")){
             System.out.println("Money: " + gameBoard.getMoney());
         }
@@ -86,9 +90,11 @@ public class TowerDefenceGame {
 
     private void buyArcherTower() {
         towerCount++;
-        Buildings archerTower = new ArcherTower(towerCount);
+        Buildings archerTower = new ArcherTower(towerCount, getPosition());
+
         if(gameBoard.getMoney() >= archerTower.getCost()){
             GameBoard.addBuilding(archerTower);
+            gameBoard.placeBuilding(archerTower.getPosition(), "A");
             gameBoard.spendMoney(archerTower.getCost());
         }
         else{
@@ -96,11 +102,26 @@ public class TowerDefenceGame {
         }
     }
 
+    private Position getPosition() {
+        int x_pos = 0;
+        int y_pos = 0;
+        System.out.println("What is the x coordinate of your Building?: ");
+        x_pos = input.nextInt();
+        System.out.println("What is the y coordinate of your Building?: ");
+        y_pos = input.nextInt();
+
+        Position position = new Position(x_pos, y_pos);
+        return position;
+
+    }
+
     private void buyGoldMine() {
         mineCount++;
-        Buildings goldMine = new GoldMine(mineCount);
+        Buildings goldMine = new GoldMine(mineCount, getPosition());
+
         if(gameBoard.getMoney() >= goldMine.getCost()){
             GameBoard.addBuilding(goldMine);
+            gameBoard.placeBuilding(goldMine.getPosition(), "$");
             gameBoard.spendMoney(goldMine.getCost());
         }
         else{
@@ -110,11 +131,12 @@ public class TowerDefenceGame {
     }
 
     private void displayChoices() {
-        System.out.println("\nSelect from:");
+        System.out.println("\nSelect from: ");
         System.out.println("\tb -> buy buildings");
         System.out.println("\ts -> start round");
         System.out.println("\tm -> check money");
         System.out.println("\tg -> get buildings");
+        System.out.println("\tp -> print board");
         System.out.println("\tq -> quit");
     }        
     

@@ -9,11 +9,11 @@ public class GoldMine implements Buildings{
     private int num;
     private String type;
 
-    public GoldMine(int num){
+    public GoldMine(int num, Position position){
         this.health = 200;
         this.position = position;
         this.produceSpeed = 10;
-        this.cost = 300;
+        this.cost = 200;
         this.status = true;
         this.num = num;
         this.type = "Gold Mine";

@@ -12,13 +12,13 @@ public class ArcherTower implements Buildings {
     private String type;
 
     
-    public ArcherTower(int num) {
+    public ArcherTower(int num, Position position) {
         this.health = 100;  // Starting health of Archer Tower
         this.position = position; 
         this.range = 5;     // Attack range of archer tower
         this.damage = 10;   // Example damage
         this.attackSpeed = 2;  // Example attack speed
-        this.cost = 200;    // Example cost
+        this.cost = 100;    // Example cost
         this.status = true;
         this.num = num; // Tower count
         this.type = "Archer Tower";
