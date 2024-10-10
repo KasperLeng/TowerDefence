@@ -13,8 +13,9 @@ public class GameBoard {
 
     public GameBoard() {
         buildings = new ArrayList<Buildings>();
-        money = 500;
-        board = new String[y_Max][x_Max];
+        monsters = new ArrayList<Monsters>();
+        this.money = 500;
+        this.board = new String[y_Max][x_Max];
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
@@ -100,6 +101,10 @@ public class GameBoard {
 
     public void placeBuilding(Position position, String symbol) {
         board[position.getRow()-1][position.getColumn()-1] = symbol;
+    }
+
+    public Object getMonsters() {
+        return monsters;
     }
 
 }

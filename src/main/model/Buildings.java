@@ -9,4 +9,5 @@ public interface Buildings {
     int getNum();
     String getType();
     int getCost();
+    boolean getStatus();
 }

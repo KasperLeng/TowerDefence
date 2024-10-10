@@ -10,7 +10,7 @@ public class GoldMine implements Buildings{
     private String type;
 
     public GoldMine(int num, Position position){
-        this.health = 200;
+        this.health = 400;
         this.position = position;
         this.produceSpeed = 10;
         this.cost = 200;
@@ -30,6 +30,7 @@ public class GoldMine implements Buildings{
             // Handle tower destruction logic here
             System.out.println("Gold Mine destroyed!");
             status = false;
+            health = 0;
         }
     }
 
@@ -51,6 +52,11 @@ public class GoldMine implements Buildings{
     @Override
     public int getCost() {
         return cost;
+    }
+
+    @Override
+    public boolean getStatus() {
+        return status;
     }
 
 }

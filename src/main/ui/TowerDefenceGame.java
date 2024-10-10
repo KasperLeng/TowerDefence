@@ -47,8 +47,8 @@ public class TowerDefenceGame {
         String choice = null;
         if(command.equals("b")){
             System.out.println("\nType of Building:");
-            System.out.println("\ta -> archer tower" + "    Cost: 200");
-            System.out.println("\tg -> gold mine" + "    Cost: 300");
+            System.out.println("\ta -> archer tower" + "    Cost: 100");
+            System.out.println("\tg -> gold mine" + "    Cost: 200");
             choice = input.next();
             choice = choice.toLowerCase();
             
@@ -92,24 +92,35 @@ public class TowerDefenceGame {
         towerCount++;
         Buildings archerTower = new ArcherTower(towerCount, getPosition());
 
-        if(gameBoard.getMoney() >= archerTower.getCost()){
-            GameBoard.addBuilding(archerTower);
-            gameBoard.placeBuilding(archerTower.getPosition(), "A");
-            gameBoard.spendMoney(archerTower.getCost());
+        if((archerTower.getPosition().getRow() <= 0) || (archerTower.getPosition().getColumn() <= 0)){
+            System.out.println("Try again...");
         }
         else{
-            System.out.println("Not enough money...");
+            if(gameBoard.getMoney() >= archerTower.getCost()){
+                GameBoard.addBuilding(archerTower);
+                gameBoard.placeBuilding(archerTower.getPosition(), "A");
+                gameBoard.spendMoney(archerTower.getCost());
+            }
+            else{
+                System.out.println("Not enough money...");
+            }
         }
     }
 
     private Position getPosition() {
         int x_pos = 0;
         int y_pos = 0;
-        System.out.println("What is the x coordinate of your Building?: ");
-        x_pos = input.nextInt();
-        System.out.println("What is the y coordinate of your Building?: ");
-        y_pos = input.nextInt();
+        try{
+            System.out.println("What is the x coordinate of your Building?: ");
+            x_pos = input.nextInt();
+            System.out.println("What is the y coordinate of your Building?: ");
+            y_pos = input.nextInt();
 
+        }
+        catch(InputMismatchException e){
+            System.out.println("Please Enter a coordinate...");
+
+        }
         Position position = new Position(x_pos, y_pos);
         return position;
 

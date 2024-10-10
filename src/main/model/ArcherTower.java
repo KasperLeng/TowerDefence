@@ -13,7 +13,7 @@ public class ArcherTower implements Buildings {
 
     
     public ArcherTower(int num, Position position) {
-        this.health = 100;  // Starting health of Archer Tower
+        this.health = 200;  // Starting health of Archer Tower
         this.position = position; 
         this.range = 5;     // Attack range of archer tower
         this.damage = 10;   // Example damage
@@ -23,12 +23,6 @@ public class ArcherTower implements Buildings {
         this.num = num; // Tower count
         this.type = "Archer Tower";
     }
-    
-    @Override
-    public int getHealth() {
-        return this.health;
-    }
-
     @Override
     public void takeDamage(int damage) {
         this.health -= damage;
@@ -36,12 +30,8 @@ public class ArcherTower implements Buildings {
             // Handle tower destruction logic here
             System.out.println("Archer Tower destroyed!");
             status = false;
+            health = 0;
         }
-    }
-
-    @Override
-    public Position getPosition() {
-        return this.position;
     }
     
     // Archer Tower specific behavior
@@ -49,6 +39,17 @@ public class ArcherTower implements Buildings {
         if (target.isWithinRange(this.position, this.range)) {
             target.takeDamage(this.damage);
         }
+    }
+
+
+    @Override
+    public int getHealth() {
+        return this.health;
+    }
+    
+    @Override
+    public Position getPosition() {
+        return this.position;
     }
 
     @Override
@@ -65,6 +66,13 @@ public class ArcherTower implements Buildings {
     public int getCost() {
         return cost;
     }
+
+    @Override
+    public boolean getStatus() {
+        return status;
+    }
+
+    
 
     
 }
