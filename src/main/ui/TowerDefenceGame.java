@@ -68,14 +68,14 @@ public class TowerDefenceGame {
         }
 
         else if(command.equals("p")){
-           gameBoard.printBoard();
+           printBoard();
         }
 
         else if(command.equals("m")){
             System.out.println("Money: " + gameBoard.getMoney());
         }
 
-        else if(command.equals("g")){
+        else if(command.equals("v")){
             System.out.println("Buildings:");
             for(Buildings i:gameBoard.getBuildings()){
                 System.out.println(i.getType() + " " + i.getNum());
@@ -143,12 +143,49 @@ public class TowerDefenceGame {
 
     private void displayChoices() {
         System.out.println("\nSelect from: ");
-        System.out.println("\tb -> buy buildings");
-        System.out.println("\ts -> start round");
-        System.out.println("\tm -> check money");
-        System.out.println("\tg -> get buildings");
+        System.out.println("\tb -> Buy buildings");
+        System.out.println("\ts -> Start round");
+        System.out.println("\tm -> Check money");
+        System.out.println("\tv -> View your buildings");
         System.out.println("\tp -> print board");
         System.out.println("\tq -> quit");
-    }        
+    }
+
+    public void printBoard() {
+        String[][] board = gameBoard.getBoard();
+
+        // Print the column numbers (top row)
+        System.out.print("     ");
+        for (int i = 0; i < board[0].length; i++) {
+            System.out.printf("%2d  ", i + 1); // Prints column numbers
+        }
+        System.out.println();
+
+        // Print top border
+        System.out.print("   ");
+        for (int i = 0; i < board[0].length; i++) {
+            System.out.print("+---");
+        }
+        System.out.println("+");
+
+        // Print the rows of the board
+        for (int i = 0; i < board.length; i++) {
+            // Print the row number
+            System.out.printf("%2d ", i + 1);
+
+            // Print the content of each row with vertical borders
+            for (int j = 0; j < board[i].length; j++) {
+                System.out.print("| " + board[i][j] + " ");
+            }
+            System.out.println("|");
+
+            // Print bottom border of each row
+            System.out.print("   ");
+            for (int j = 0; j < board[i].length; j++) {
+                System.out.print("+---");
+            }
+            System.out.println("+");
+        }
+    }
     
 }

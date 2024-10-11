@@ -1,6 +1,6 @@
 package model;
 
-public class SkeletonWarrior implements Monsters{
+public class SkeletonWarrior implements Monsters {
     private int health;
     private Position position;
     private int range;
@@ -8,10 +8,10 @@ public class SkeletonWarrior implements Monsters{
     private int movingSpeed;
     private boolean status;
 
-    public SkeletonWarrior(Position position){
+    public SkeletonWarrior(Position position) {
         this.health = 200;
-        this.range = 5;
-        this.damage = 10;
+        this.range = 2;
+        this.damage = 50;
         this.position = position;
         this.movingSpeed = 20;
         this.status = true;
@@ -25,8 +25,9 @@ public class SkeletonWarrior implements Monsters{
     @Override
     public void takeDamage(int damage) {
         health -= damage;
-        if (health <= 0){
+        if (health <= 0) {
             System.out.println("Skeleton Died");
+            health = 0;
             status = false;
         }
     }
@@ -36,19 +37,40 @@ public class SkeletonWarrior implements Monsters{
         this.position = newPosition;
     }
 
-    @Override
-    public boolean isWithinRange(Position buildingPosition, int range) {
-        return calculateDistance(buildingPosition, this.position) <= range;
+
+    private boolean withinRange(Position towerPosition, Position monsterPosition) {
+        return getDistance(towerPosition, monsterPosition) <= range;
     }
 
-    private int calculateDistance(Position buildingPosition, Position position2) {
-        return 0;
-    }
 
     @Override
     public Position getPosition() {
         return position;
     }
 
+    @Override
+    public boolean getStatus() {
+        return status;
+    }
 
+    @Override
+    public int getDamage() {
+        return damage;
+    }
+
+    public double getDistance(Position buildingPosition, Position monsterPosition) {
+        int x1 = buildingPosition.getRow();
+        int y1 = buildingPosition.getColumn();
+        int x2 = monsterPosition.getRow();
+        int y2 = monsterPosition.getColumn();
+    
+        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+    }
+
+    @Override
+    public void attack(Buildings building, int damage) {
+        if (withinRange(this.position, building.getPosition())) {
+            building.takeDamage(this.damage);
+        }
+    }
 }

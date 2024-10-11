@@ -1,5 +1,7 @@
 package model;
 
+import java.lang.Math;
+// Represents an Archer Tower on the screen.
 public class ArcherTower implements Buildings {
     private int health;
     private Position position;
@@ -13,7 +15,7 @@ public class ArcherTower implements Buildings {
 
     
     public ArcherTower(int num, Position position) {
-        this.health = 200;  // Starting health of Archer Tower
+        this.health = 150;  // Starting health of Archer Tower
         this.position = position; 
         this.range = 5;     // Attack range of archer tower
         this.damage = 10;   // Example damage
@@ -23,6 +25,7 @@ public class ArcherTower implements Buildings {
         this.num = num; // Tower count
         this.type = "Archer Tower";
     }
+
     @Override
     public void takeDamage(int damage) {
         this.health -= damage;
@@ -36,9 +39,23 @@ public class ArcherTower implements Buildings {
     
     // Archer Tower specific behavior
     public void attack(Monsters target) {
-        if (target.isWithinRange(this.position, this.range)) {
+        if (withinRange(this.position, target.getPosition())) {
             target.takeDamage(this.damage);
         }
+    }
+
+
+    private boolean withinRange(Position towerPosition, Position monsterPosition) {
+        return getDistance(towerPosition, monsterPosition) <= range;
+    }
+
+    private double getDistance(Position buildingPosition, Position monsterPosition) {
+        int x1 = buildingPosition.getRow();
+        int y1 = buildingPosition.getColumn();
+        int x2 = monsterPosition.getRow();
+        int y2 = monsterPosition.getColumn();
+
+        return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
     }
 
 
@@ -53,7 +70,7 @@ public class ArcherTower implements Buildings {
     }
 
     @Override
-    public int getNum(){
+    public int getNum() {
         return num;
     }
 

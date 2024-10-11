@@ -24,15 +24,6 @@ public class Position {
         return row;
     }
 
-    // EFFECTS: returns horizontal screen coordinate of top-left corner of cell
-    public int getScreenHorizontalCoord() {
-        return column * cellSize;
-    }
-
-    // EFFECTS: returns vertical screen coordinate of top-left corner of cell
-    public int getScreenVerticalCoord() {
-        return row * cellSize;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -51,17 +42,5 @@ public class Position {
         }
 
         return row == cell.row;
-    }
-
-    // @Override
-    // public int hashCode() {
-    //     int result = column;
-    //     result = 31 * result + row;
-    //     return result;
-    // }
-
-    @Override
-    public String toString() {
-        return "Position(" + column + ", " + row + ")";
     }
 }

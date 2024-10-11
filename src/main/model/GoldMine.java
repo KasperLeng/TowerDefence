@@ -1,6 +1,7 @@
 package model;
 
-public class GoldMine implements Buildings{
+// Represents an Gold Mine on the screen.
+public class GoldMine implements Buildings {
     private int health;
     private Position position;
     private int produceSpeed;
@@ -9,7 +10,7 @@ public class GoldMine implements Buildings{
     private int num;
     private String type;
 
-    public GoldMine(int num, Position position){
+    public GoldMine(int num, Position position) {
         this.health = 400;
         this.position = position;
         this.produceSpeed = 10;
