@@ -1,30 +1,29 @@
 package model;
 
-// Represents a cell - a location on the board.
+// Represents a position - a location on the board.
 public class Position {
-    // size of cell in screen coordinates
-    public static final int cellSize = 10;
 
     private int column;   // the column that the object lies in.
-    private int row;      // the row that this cell lies in.
+    private int row;      // the row that this object lies in.
 
-    // EFFECTS: constructs cell at given row and column on board
+    // EFFECTS: constructs position at given row and column on board
     public Position(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
-    // EFFECTS: returns column in which cell is located
+    // EFFECTS: returns column the object is located in.
     public int getColumn() {
         return column;
     }
 
-    // EFFECTS: returns row in which cell is located
+    // EFFECTS: returns row the object is located in.
     public int getRow() {
         return row;
     }
 
 
+    // EFFECTS: checks if two positions are the same. 
     @Override
     public boolean equals(Object o) {
         if (this == o) {

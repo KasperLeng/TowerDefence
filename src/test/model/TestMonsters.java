@@ -6,26 +6,27 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 public class TestMonsters {
     private Monsters archerGoblin;
     private Monsters skeletonWarrior;
 
 
     @BeforeEach
-    void runBefore(){
+    void runBefore() {
         archerGoblin = new ArcherGoblin(new Position(4, 4));
         skeletonWarrior = new SkeletonWarrior(new Position(5, 6));
     
     }
 
     @Test
-    void testConstructor(){
+    void testConstructor() {
         assertEquals(new Position(4, 4), archerGoblin.getPosition());
         assertEquals(new Position(5, 6), skeletonWarrior.getPosition());
     }
 
     @Test
-    void testTakeDamage(){
+    void testTakeDamage() {
         archerGoblin.takeDamage(10);
         skeletonWarrior.takeDamage(20);
         assertEquals(90, archerGoblin.getHealth());
@@ -43,7 +44,7 @@ public class TestMonsters {
     }
 
     @Test
-    void testAttack(){
+    void testAttack() {
         Buildings archerTower = new ArcherTower(1, new Position(0, 0));
 
         archerGoblin.attack(archerTower, archerGoblin.getDamage());

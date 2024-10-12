@@ -11,12 +11,12 @@ public class TestPosition {
     private Position position;
 
     @BeforeEach
-    void runBefore(){
-       position = new Position(1, 1);
+    void runBefore() {
+        position = new Position(1, 1);
     }
     
     @Test
-    void testPositionEquals(){
+    void testPositionEquals() {
         assertEquals(position, new Position(1, 1));
     }
 }

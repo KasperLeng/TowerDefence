@@ -52,7 +52,7 @@ public class TestBuildings {
     }
 
     @Test
-    void testAttack(){
+    void testAttack() {
         Monsters archerGoblin1 = new ArcherGoblin(new Position(4, 4));
         Monsters archerGoblin2 = new ArcherGoblin(new Position(10, 10));
         gameBoard.placeBuilding(new Position(2, 2), "A");

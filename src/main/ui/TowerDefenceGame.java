@@ -3,18 +3,36 @@ package ui;
 import model.*;
 import java.util.*;
 
+/**
+ * Represents the main Tower Defense game logic, handling player interactions,
+ * game state,
+ * and management of buildings and resources.
+ */
 public class TowerDefenceGame {
-    private Scanner input;
-    private GameBoard gameBoard;
-    private int towerCount;
-    private int mineCount;
+    private Scanner input; // User input scanner
+    private GameBoard gameBoard; // The game board instance
+    private int towerCount; // Count of Archer Towers placed
+    private int mineCount; // Count of Gold Mines placed
 
-    
+    /**
+     * Constructs a TowerDefenceGame and starts the game by calling the runGame
+     * method.
+     * 
+     * EFFECTS: Initializes and runs the Tower Defense game.
+     */
     public TowerDefenceGame() {
         runGame();
     }
 
-    public void runGame(){
+    /**
+     * Runs the main game loop where the player can buy buildings, start rounds,
+     * view stats, and perform other game actions.
+     * 
+     * MODIFIES: this
+     * EFFECTS: Starts the game, initializes necessary components, and processes
+     * user commands until "q" is entered.
+     */
+    public void runGame() {
         // Initialize game board
         gameBoard = new GameBoard();
 
@@ -35,112 +53,148 @@ public class TowerDefenceGame {
                 processCommand(command);
             }
         }
-        
     }
 
+    /**
+     * Initializes the user input scanner.
+     * 
+     * MODIFIES: this
+     * EFFECTS: Sets up the input scanner for reading user commands.
+     */
     private void init() {
         input = new Scanner(System.in);
         input.useDelimiter("\r?\n|\r");
     }
 
+    /**
+     * Processes a given user command and performs the corresponding game action.
+     * 
+     * MODIFIES: this, gameBoard
+     * EFFECTS: Interprets the command and calls the appropriate method (e.g.,
+     * buying buildings, starting the game).
+     */
     private void processCommand(String command) {
-        String choice = null;
-        if(command.equals("b")){
-            System.out.println("\nType of Building:");
-            System.out.println("\ta -> archer tower" + "    Cost: 100");
-            System.out.println("\tg -> gold mine" + "    Cost: 200");
-            choice = input.next();
-            choice = choice.toLowerCase();
-            
-            if(choice.equals("a")){
-                buyArcherTower();
-            }
-            else if(choice.equals("g")){
-                buyGoldMine();
-            }
-            else {
-                System.out.println("Selection not valid...");
-            }
-        }
-
-        else if(command.equals("s")){
+        if (command.equals("b")) {
+            choiceB();
+        } else if (command.equals("s")) {
             startGame();
-        }
-
-        else if(command.equals("p")){
-           printBoard();
-        }
-
-        else if(command.equals("m")){
+        } else if (command.equals("p")) {
+            printBoard();
+        } else if (command.equals("m")) {
             System.out.println("Money: " + gameBoard.getMoney());
-        }
-
-        else if(command.equals("v")){
+        } else if (command.equals("v")) {
             System.out.println("Buildings:");
-            for(Buildings i:gameBoard.getBuildings()){
+            for (Buildings i : gameBoard.getBuildings()) {
                 System.out.println(i.getType() + " " + i.getNum());
             }
         }
-
     }
 
-    private void startGame(){
-        gameBoard.startRound();
-    }   
+    /**
+     * Helper choiceB prints the options for buildings.
+     * 
+     * MODIFIES: this, gameBoard
+     * EFFECTS: This helper allows the user to buy buildings.
+     */
+    private void choiceB() {
+        String choice = null;
+        System.out.println("\nType of Building:");
+        System.out.println("\ta -> archer tower" + "    Cost: 100");
+        System.out.println("\tg -> gold mine" + "    Cost: 200");
+        choice = input.next();
+        choice = choice.toLowerCase();
 
+        if (choice.equals("a")) {
+            buyArcherTower();
+        } else if (choice.equals("g")) {
+            buyGoldMine();
+        } else {
+            System.out.println("Selection not valid...");
+        }
+    }
+
+    /**
+     * Starts a round in the game.
+     * 
+     * MODIFIES: gameBoard
+     * EFFECTS: Starts a new game round.
+     */
+    private void startGame() {
+        gameBoard.startRound();
+    }
+
+    /**
+     * Handles the logic for buying and placing an Archer Tower.
+     * 
+     * MODIFIES: this, gameBoard
+     * EFFECTS: Buys an Archer Tower if the player has enough money and places it on
+     * the game board.
+     */
     private void buyArcherTower() {
         towerCount++;
         Buildings archerTower = new ArcherTower(towerCount, getPosition());
 
-        if((archerTower.getPosition().getRow() <= 0) || (archerTower.getPosition().getColumn() <= 0)){
+        if ((archerTower.getPosition().getRow() <= 0) || (archerTower.getPosition().getColumn() <= 0)) {
             System.out.println("Try again...");
-        }
-        else{
-            if(gameBoard.getMoney() >= archerTower.getCost()){
+        } else {
+            if (gameBoard.getMoney() >= archerTower.getCost()) {
                 GameBoard.addBuilding(archerTower);
                 gameBoard.placeBuilding(archerTower.getPosition(), "A");
                 gameBoard.spendMoney(archerTower.getCost());
-            }
-            else{
+            } else {
                 System.out.println("Not enough money...");
             }
         }
     }
 
+    /**
+     * Handles the logic for obtaining the position of a building from user input.
+     * 
+     * EFFECTS: Returns a Position object based on the user-provided x and y
+     * coordinates.
+     */
     private Position getPosition() {
-        int x_pos = 0;
-        int y_pos = 0;
-        try{
+        int xpos = 0;
+        int ypos = 0;
+        try {
             System.out.println("What is the x coordinate of your Building?: ");
-            x_pos = input.nextInt();
+            xpos = input.nextInt();
             System.out.println("What is the y coordinate of your Building?: ");
-            y_pos = input.nextInt();
+            ypos = input.nextInt();
 
+        } catch (InputMismatchException e) {
+            System.out.println("Please Enter a valid coordinate...");
+            input.nextLine(); // Clear invalid input
         }
-        catch(InputMismatchException e){
-            System.out.println("Please Enter a coordinate...");
-
-        }
-        Position position = new Position(x_pos, y_pos);
-        return position;
-
+        return new Position(xpos, ypos);
     }
 
+    /**
+     * Handles the logic for buying and placing a Gold Mine.
+     * 
+     * MODIFIES: this, gameBoard
+     * EFFECTS: Buys a Gold Mine if the player has enough money and places it on the
+     * game board.
+     */
     private void buyGoldMine() {
         mineCount++;
         Buildings goldMine = new GoldMine(mineCount, getPosition());
 
-        if(gameBoard.getMoney() >= goldMine.getCost()){
+        if (gameBoard.getMoney() >= goldMine.getCost()) {
             GameBoard.addBuilding(goldMine);
             gameBoard.placeBuilding(goldMine.getPosition(), "$");
             gameBoard.spendMoney(goldMine.getCost());
-        }
-        else{
+        } else {
             System.out.println("Not enough money...");
         }
-
     }
 
+    /**
+     * Displays the available choices for the player, such as buying buildings or
+     * starting a round.
+     * 
+     * EFFECTS: Prints the available commands and their descriptions to the console.
+     */
     private void displayChoices() {
         System.out.println("\nSelect from: ");
         System.out.println("\tb -> Buy buildings");
@@ -151,6 +205,11 @@ public class TowerDefenceGame {
         System.out.println("\tq -> quit");
     }
 
+    /**
+     * Prints the game board with buildings placed on it and the grid numbers.
+     * 
+     * EFFECTS: Displays the current state of the game board to the console.
+     */
     public void printBoard() {
         String[][] board = gameBoard.getBoard();
 
@@ -187,5 +246,4 @@ public class TowerDefenceGame {
             System.out.println("+");
         }
     }
-    
 }

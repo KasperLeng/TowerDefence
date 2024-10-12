@@ -35,21 +35,20 @@ public class TestGameBoard {
     }
 
     @Test
-    void testBuyBuildings(){
-        Buildings aTower = new ArcherTower(1, new Position(1, 3));
+    void testBuyBuildings() {
+        Buildings archerTower = new ArcherTower(1, new Position(1, 3));
         assertEquals(buildings, gameBoard.getBuildings());
-        GameBoard.addBuilding(aTower);
-        gameBoard.placeBuilding(aTower.getPosition(), "A");
-        buildings.add(aTower);
+        GameBoard.addBuilding(archerTower);
+        gameBoard.placeBuilding(archerTower.getPosition(), "A");
+        buildings.add(archerTower);
         assertEquals(buildings, gameBoard.getBuildings());
         assertEquals(buildings.get(0), gameBoard.getBuildings().get(0));
-
 
 
     }
 
     @Test
-    void testAddMonsters(){
+    void testAddMonsters() {
         Monsters gob = new ArcherGoblin(new Position(0, 0));
         Monsters ske = new SkeletonWarrior(new Position(1, 0));
         monsters.add(gob);
