@@ -7,7 +7,7 @@ package model;
 public class GoldMine implements Buildings {
     private int health;               // Health of the Gold Mine (400 max)
     private Position position;        // Position of the Gold Mine on the game map
-    private int produceSpeed;         // Speed at which the Gold Mine produces gold
+    //private int produceSpeed;         // Speed at which the Gold Mine produces gold
     private int cost;                 // Cost of building or maintaining the Gold Mine
     private boolean status;           // Status of the Gold Mine (true if operational)
     private int num;                  // Unique identifier for the Gold Mine
@@ -24,7 +24,7 @@ public class GoldMine implements Buildings {
     public GoldMine(int num, Position position) {
         this.health = 400;
         this.position = position;
-        this.produceSpeed = 10;
+        //this.produceSpeed = 10;
         this.cost = 200;
         this.status = true;
         this.num = num;

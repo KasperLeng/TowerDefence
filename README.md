@@ -15,4 +15,6 @@ A *required* list:
 - As a user, I would want to buy new **houses** and to add them to a collection of Buildings.
 - As a user, I would want to able to see the houses I bought. (Stored in an arrayList of Buildings)
 - As a user, I would want to earn money from killing **enemys**, and from gold mines.
-- AS a user, I would want to **save** my game and start from where I ended.
+- As a user, I would want to **save** my game and start from where I ended.
+- As a user, I would want to have my **progress** of the game from last time. 
+- As a user, when I start the game, I want to be given the option to start a **new game** or **continue**.

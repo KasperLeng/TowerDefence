@@ -1,10 +1,6 @@
 package model;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -15,7 +11,6 @@ public class TestGameBoard {
     private GameBoard gameBoard;
     private ArrayList<Buildings> buildings;
     private ArrayList<Monsters> monsters;
-    private String[][] board;
 
     
     @BeforeEach
@@ -23,7 +18,6 @@ public class TestGameBoard {
         this.gameBoard = new GameBoard();
         this.buildings = new ArrayList<Buildings>();
         this.monsters = new ArrayList<Monsters>();
-        this.board = new String[20][10];
     }
 
     @Test

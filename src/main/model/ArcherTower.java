@@ -12,7 +12,7 @@ public class ArcherTower implements Buildings {
     private Position position;       // Tower's current position on the map
     private int range;               // Tower's attack range
     private int damage;              // Damage the tower inflicts per attack
-    private int attackSpeed;         // Attack frequency of the tower
+    //private int attackSpeed;         // Attack frequency of the tower
     private int cost;                // Cost to build or maintain the tower
     private boolean status;          // True if tower is operational, false if destroyed
     private int num;                 // Unique identifier of the tower
@@ -32,7 +32,7 @@ public class ArcherTower implements Buildings {
         this.position = position;
         this.range = 5;              // Default attack range
         this.damage = 10;            // Default damage per attack
-        this.attackSpeed = 2;        // Default attack speed
+        //this.attackSpeed = 2;        // Default attack speed
         this.cost = 100;             // Default cost
         this.status = true;          // Initial operational status
         this.num = num;              // Tower's unique identifier

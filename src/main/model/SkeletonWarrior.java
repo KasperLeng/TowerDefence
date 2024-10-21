@@ -9,7 +9,7 @@ public class SkeletonWarrior implements Monsters {
     private Position position;        // Current position of the Skeleton Warrior on the game map
     private int range;                // Attack range of the Skeleton Warrior
     private int damage;               // Damage dealt by the Skeleton Warrior
-    private int movingSpeed;          // Movement speed of the Skeleton Warrior
+    //private int movingSpeed;          // Movement speed of the Skeleton Warrior
     private boolean status;           // Status of the Skeleton Warrior (true if alive)
 
     /**
@@ -25,7 +25,7 @@ public class SkeletonWarrior implements Monsters {
         this.range = 2;
         this.damage = 50;
         this.position = position;
-        this.movingSpeed = 20;
+        //this.movingSpeed = 20;
         this.status = true;
     }
 

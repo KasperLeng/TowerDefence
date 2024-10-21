@@ -11,7 +11,7 @@ public class ArcherGoblin implements Monsters {
     private Position position;       // Goblin's current position on the map
     private int range;               // Goblin's attack range
     private int damage;              // Damage the goblin inflicts
-    private int movingSpeed;         // Goblin's movement speed
+    //private int movingSpeed;         // Goblin's movement speed
     private boolean status;          // True if goblin is alive, false if dead
 
     /**
@@ -28,7 +28,7 @@ public class ArcherGoblin implements Monsters {
         this.range = 5;
         this.damage = 20;
         this.position = position;
-        this.movingSpeed = 15;
+        //this.movingSpeed = 15;
         this.status = true;
     }
 
