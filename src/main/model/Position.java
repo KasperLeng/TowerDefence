@@ -3,8 +3,8 @@ package model;
 // Represents a position - a location on the board.
 public class Position {
 
-    private int column;   // the column that the object lies in.
-    private int row;      // the row that this object lies in.
+    private int column; // the column that the object lies in.
+    private int row; // the row that this object lies in.
 
     // EFFECTS: constructs position at given row and column on board
     public Position(int row, int column) {
@@ -22,24 +22,23 @@ public class Position {
         return row;
     }
 
-
-    // EFFECTS: checks if two positions are the same. 
+    // EFFECTS: checks if two positions are the same.
     // @Override
     // public boolean equals(Object o) {
-    //     if (this == o) {
-    //         return true;
-    //     }
+    // if (this == o) {
+    // return true;
+    // }
 
-    //     if (o == null || getClass() != o.getClass()) {
-    //         return false;
-    //     }
+    // if (o == null || getClass() != o.getClass()) {
+    // return false;
+    // }
 
-    //     Position cell = (Position) o;
+    // Position cell = (Position) o;
 
-    //     if (column != cell.column) {
-    //         return false;
-    //     }
+    // if (column != cell.column) {
+    // return false;
+    // }
 
-    //     return row == cell.row;
+    // return row == cell.row;
     // }
 }

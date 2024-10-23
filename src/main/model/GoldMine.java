@@ -3,17 +3,19 @@ package model;
 import org.json.JSONObject;
 
 /**
- * Represents a Gold Mine on the screen. A Gold Mine produces gold at a certain speed,
+ * Represents a Gold Mine on the screen. A Gold Mine produces gold at a certain
+ * speed,
  * has health, a position on the game map, and can be damaged or destroyed.
  */
 public class GoldMine implements Buildings {
-    private int health;               // Health of the Gold Mine (400 max)
-    private Position position;        // Position of the Gold Mine on the game map
-    private final int produceSpeed = 10;         // Speed at which the Gold Mine produces gold
-    private final int cost = 200;                 // Cost of building or maintaining the Gold Mine
-    private boolean status;           // Status of the Gold Mine (true if operational)
-    private int num;                  // Unique identifier for the Gold Mine
-    private final String type = "Gold Mine";              // Type of building ("Gold Mine")
+    private int health; // Health of the Gold Mine (400 max)
+    private Position position; // Position of the Gold Mine on the game map
+    // private final int produceSpeed = 10; // Speed at which the Gold Mine produces
+    // gold
+    private final int cost = 200; // Cost of building or maintaining the Gold Mine
+    private boolean status; // Status of the Gold Mine (true if operational)
+    private int num; // Unique identifier for the Gold Mine
+    private final String type = "Gold Mine"; // Type of building ("Gold Mine")
 
     /**
      * Constructs a Gold Mine with a specific position and unique identifier.
@@ -21,7 +23,8 @@ public class GoldMine implements Buildings {
      * 
      * REQUIRES: position != null, num >= 0
      * MODIFIES: this
-     * EFFECTS: Initializes the Gold Mine with the given position and assigns default values for other attributes.
+     * EFFECTS: Initializes the Gold Mine with the given position and assigns
+     * default values for other attributes.
      */
     public GoldMine(int num, Position position, int health) {
         this.health = health;
@@ -45,7 +48,8 @@ public class GoldMine implements Buildings {
      * 
      * REQUIRES: damage >= 0
      * MODIFIES: this
-     * EFFECTS: Reduces health by the damage amount and sets status to false if the Gold Mine is destroyed.
+     * EFFECTS: Reduces health by the damage amount and sets status to false if the
+     * Gold Mine is destroyed.
      */
     public void takeDamage(int damage) {
         health = health - damage;
@@ -98,7 +102,8 @@ public class GoldMine implements Buildings {
     /**
      * Returns the current operational status of the Gold Mine.
      * 
-     * EFFECTS: Returns true if the Gold Mine is operational, false if it has been destroyed.
+     * EFFECTS: Returns true if the Gold Mine is operational, false if it has been
+     * destroyed.
      */
     @Override
     public boolean getStatus() {

@@ -20,8 +20,10 @@ public class TestMonsters {
 
     @Test
     void testConstructor() {
-        assertEquals(new Position(4, 4), archerGoblin.getPosition());
-        assertEquals(new Position(5, 6), skeletonWarrior.getPosition());
+        assertEquals(4, archerGoblin.getPosition().getRow());
+        assertEquals(4, archerGoblin.getPosition().getColumn());
+        assertEquals(5, skeletonWarrior.getPosition().getRow());
+        assertEquals(6, skeletonWarrior.getPosition().getColumn());
     }
 
     @Test

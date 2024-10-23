@@ -8,27 +8,29 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 /**
- * Represents a gameboard that contains coordinates, defines board dimensions, and manages
+ * Represents a gameboard that contains coordinates, defines board dimensions,
+ * and manages
  * buildings and monsters placed on it.
  */
 public class GameBoard implements Writable {
-    private final int xmax = 20;        // Length of game board (number of columns)
-    private final int ymax = 10;        // Width of game board (number of rows)
-    private String[][] board;           // 2D array representing the game board grid
+    private final int xmax = 20; // Length of game board (number of columns)
+    private final int ymax = 10; // Width of game board (number of rows)
+    private String[][] board; // 2D array representing the game board grid
     private String name;
     private int round;
 
-    private static ArrayList<Buildings> buildings;   // Collection of all buildings on the board
-    private static ArrayList<Monsters> monsters;     // Collection of all monsters on the board
-    private int money;                               // Player's available money
+    private static ArrayList<Buildings> buildings; // Collection of all buildings on the board
+    private static ArrayList<Monsters> monsters; // Collection of all monsters on the board
+    private int money; // Player's available money
 
     /**
-     * Constructs a new GameBoard. Initializes an empty board and sets the initial money.
+     * Constructs a new GameBoard. Initializes an empty board and sets the initial
+     * money.
      * Each cell of the board is initialized to a blank space (" ").
      * 
      * MODIFIES: this
-     * EFFECTS: Initializes the board to be empty, sets starting money to 500, and 
-     *          initializes empty collections for buildings and monsters.
+     * EFFECTS: Initializes the board to be empty, sets starting money to 500, and
+     * initializes empty collections for buildings and monsters.
      */
     public GameBoard(String name, int round) {
         this.name = name;
@@ -40,7 +42,7 @@ public class GameBoard implements Writable {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
-                board[i][j] = " ";  // Empty spaces for now
+                board[i][j] = " "; // Empty spaces for now
             }
         }
     }
@@ -106,7 +108,8 @@ public class GameBoard implements Writable {
     }
 
     /**
-     * Places a building on the game board at the specified position with a given symbol.
+     * Places a building on the game board at the specified position with a given
+     * symbol.
      * 
      * REQUIRES: position != null, symbol != null
      * MODIFIES: board
@@ -151,7 +154,7 @@ public class GameBoard implements Writable {
         for (Buildings b : buildings) {
             jsonArray.put(b.toJson());
         }
-        
+
         return jsonArray;
     }
 
@@ -167,7 +170,4 @@ public class GameBoard implements Writable {
         return round;
     }
 
-
-
-    
 }

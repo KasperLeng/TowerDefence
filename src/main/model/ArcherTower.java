@@ -5,24 +5,24 @@ import java.lang.Math;
 import org.json.JSONObject;
 
 /**
- * Represents an Archer Tower in a game. Archer Towers are defensive buildings 
- * that attack nearby monsters, have health, a position on the game map, and 
+ * Represents an Archer Tower in a game. Archer Towers are defensive buildings
+ * that attack nearby monsters, have health, a position on the game map, and
  * defined attributes such as range, damage, attack speed, and cost.
  */
 public class ArcherTower implements Buildings {
-    private int health;              // Tower's health, ranges from 0 to 150
-    private Position position;       // Tower's current position on the map
-    private final int range = 5;               // Tower's attack range
-    private final int damage = 10;              // Damage the tower inflicts per attack
-    private final int attackSpeed = 2;         // Attack frequency of the tower
-    private final int cost = 100;                // Cost to build or maintain the tower
-    private boolean status;          // True if tower is operational, false if destroyed
-    private int num;                 // Unique identifier of the tower
-    private final String type = "Archer Tower";             // Tower type ("Archer Tower")
+    private int health; // Tower's health, ranges from 0 to 150
+    private Position position; // Tower's current position on the map
+    private final int range = 5; // Tower's attack range
+    private final int damage = 10; // Damage the tower inflicts per attack
+    // private final int attackSpeed = 2; // Attack frequency of the tower
+    private final int cost = 100; // Cost to build or maintain the tower
+    private boolean status; // True if tower is operational, false if destroyed
+    private int num; // Unique identifier of the tower
+    private final String type = "Archer Tower"; // Tower type ("Archer Tower")
 
     /**
      * Constructs an Archer Tower with a specified position and unique identifier.
-     * Initializes the health to 150, damage to 10, range to 5, attack speed to 2, 
+     * Initializes the health to 150, damage to 10, range to 5, attack speed to 2,
      * and cost to 100. The tower is operational (status = true) upon creation.
      * 
      * REQUIRES: position != null, num >= 0
@@ -30,19 +30,21 @@ public class ArcherTower implements Buildings {
      * EFFECTS: Initializes Archer Tower's attributes with default values.
      */
     public ArcherTower(int num, Position position, int health) {
-        this.health = 150;           // Starting health
-        this.position = position;    // Position of building
-        this.status = true;          // Initial operational status
-        this.num = num;              // Tower's unique identifier
+        this.health = 150; // Starting health
+        this.position = position; // Position of building
+        this.status = true; // Initial operational status
+        this.num = num; // Tower's unique identifier
     }
 
     /**
      * Reduces the Archer Tower's health by a specified amount of damage.
-     * If the health drops to 0 or below, the tower is destroyed and its status is updated.
+     * If the health drops to 0 or below, the tower is destroyed and its status is
+     * updated.
      * 
      * REQUIRES: damage >= 0
      * MODIFIES: this
-     * EFFECTS: Decreases the health by the damage amount and updates the status if the health reaches 0.
+     * EFFECTS: Decreases the health by the damage amount and updates the status if
+     * the health reaches 0.
      */
     @Override
     public void takeDamage(int damage) {
@@ -71,7 +73,8 @@ public class ArcherTower implements Buildings {
      * Checks if a monster is within the Archer Tower's attack range.
      * 
      * REQUIRES: towerPosition != null, monsterPosition != null
-     * EFFECTS: Returns true if the distance between the tower and the monster is within the tower's range.
+     * EFFECTS: Returns true if the distance between the tower and the monster is
+     * within the tower's range.
      */
     private boolean withinRange(Position towerPosition, Position monsterPosition) {
         return getDistance(towerPosition, monsterPosition) <= range;
@@ -145,7 +148,8 @@ public class ArcherTower implements Buildings {
     /**
      * Gets the current operational status of the Archer Tower.
      * 
-     * EFFECTS: Returns true if the tower is operational, false if it has been destroyed.
+     * EFFECTS: Returns true if the tower is operational, false if it has been
+     * destroyed.
      */
     @Override
     public boolean getStatus() {

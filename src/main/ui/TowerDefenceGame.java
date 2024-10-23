@@ -96,11 +96,9 @@ public class TowerDefenceGame {
             for (Buildings i : gameBoard.getBuildings()) {
                 System.out.println(i.getType() + " " + i.getNum());
             }
-        }
-        else if (command.equals("sg")) {
+        } else if (command.equals("sg")) {
             saveGameBoard();
-        }
-        else if (command.equals("lg")) {
+        } else if (command.equals("lg")) {
             loadGameBoard();
         }
     }
@@ -263,7 +261,8 @@ public class TowerDefenceGame {
             System.out.println("+");
         }
     }
-// EFFECTS: saves the gameBoard to file
+
+    // EFFECTS: saves the gameBoard to file
     private void saveGameBoard() {
         try {
             jsonWriter.open();

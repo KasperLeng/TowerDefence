@@ -1,24 +1,26 @@
 package model;
 
-import org.json.JSONObject;
-
 /**
- * Represents an Archer Goblin in a game. Archer Goblins are enemies that have health, 
- * a position on the game map, a certain attack range, and damage-dealing capability. 
- * They can move across the game field, take damage, and attack nearby buildings if 
+ * Represents an Archer Goblin in a game. Archer Goblins are enemies that have
+ * health,
+ * a position on the game map, a certain attack range, and damage-dealing
+ * capability.
+ * They can move across the game field, take damage, and attack nearby buildings
+ * if
  * within range.
  */
 public class ArcherGoblin implements Monsters {
-    private int health;              // Goblin's health, ranges from 0 to 100
-    private Position position;       // Goblin's current position on the map
-    private final int range = 5;               // Goblin's attack range
-    private final int damage = 20;              // Damage the goblin inflicts
-    private final int movingSpeed = 15;         // Goblin's movement speed
-    private boolean status;          // True if goblin is alive, false if dead
+    private int health; // Goblin's health, ranges from 0 to 100
+    private Position position; // Goblin's current position on the map
+    private final int range = 5; // Goblin's attack range
+    private final int damage = 20; // Damage the goblin inflicts
+    // private final int movingSpeed = 15; // Goblin's movement speed
+    private boolean status; // True if goblin is alive, false if dead
 
     /**
      * Constructs an Archer Goblin with a specified starting position.
-     * Initializes the health to 100, damage to 20, range to 5, and moving speed to 15.
+     * Initializes the health to 100, damage to 20, range to 5, and moving speed to
+     * 15.
      * The goblin is alive (status = true) upon creation.
      * 
      * Requires: position != null
@@ -46,7 +48,8 @@ public class ArcherGoblin implements Monsters {
      * 
      * REQUIRES: damage >= 0
      * MODIFIES: this
-     * EFFECTS: Decreases the health by the damage amount and updates the status if the health reaches 0.
+     * EFFECTS: Decreases the health by the damage amount and updates the status if
+     * the health reaches 0.
      */
     @Override
     public void takeDamage(int damage) {
@@ -72,7 +75,8 @@ public class ArcherGoblin implements Monsters {
     /**
      * Checks if the goblin is within attacking range of a specified tower position.
      * Requires: towerPosition != null, monsterPosition != null
-     * Effects: Returns true if the distance between the goblin and the tower is within the goblin's range.
+     * Effects: Returns true if the distance between the goblin and the tower is
+     * within the goblin's range.
      */
     private boolean withinRange(Position towerPosition, Position monsterPosition) {
         return getDistance(towerPosition, monsterPosition) <= range;

@@ -20,10 +20,13 @@ public class TestBuildings {
 
     @Test
     void testConstructor() {
-        assertEquals(new Position(5, 4), archerTower.getPosition());
+        assertEquals(5, archerTower.getPosition().getRow());
+        assertEquals(4, archerTower.getPosition().getColumn());
+
         assertEquals(1, archerTower.getNum());
 
-        assertEquals(new Position(4, 5), goldMine.getPosition());
+        assertEquals(4, goldMine.getPosition().getRow());
+        assertEquals(5, goldMine.getPosition().getColumn());
         assertEquals(1, goldMine.getNum());
 
         assertEquals(100, archerTower.getCost());

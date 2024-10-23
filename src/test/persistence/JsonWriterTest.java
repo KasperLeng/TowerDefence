@@ -26,15 +26,15 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyGameBoard() {
         try {
             GameBoard gb = new GameBoard("Kasper's Game", 0);
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyGameBoard.json");
             writer.open();
             writer.write(gb);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyGameBoard.json");
             gb = reader.read();
             assertEquals("Kasper's Game", gb.getName());
             assertEquals(0, gb.getRound());
@@ -47,7 +47,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralgameBoard() {
         try {
             Buildings archerTower = new ArcherTower(1, new Position(1, 3), 150);
             Buildings goldMine = new GoldMine(1, new Position(4, 5), 100);
