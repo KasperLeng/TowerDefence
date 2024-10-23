@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 /**
  * Represents a Gold Mine on the screen. A Gold Mine produces gold at a certain speed,
  * has health, a position on the game map, and can be damaged or destroyed.
@@ -7,11 +9,11 @@ package model;
 public class GoldMine implements Buildings {
     private int health;               // Health of the Gold Mine (400 max)
     private Position position;        // Position of the Gold Mine on the game map
-    //private int produceSpeed;         // Speed at which the Gold Mine produces gold
-    private int cost;                 // Cost of building or maintaining the Gold Mine
+    private final int produceSpeed = 10;         // Speed at which the Gold Mine produces gold
+    private final int cost = 200;                 // Cost of building or maintaining the Gold Mine
     private boolean status;           // Status of the Gold Mine (true if operational)
     private int num;                  // Unique identifier for the Gold Mine
-    private String type;              // Type of building ("Gold Mine")
+    private final String type = "Gold Mine";              // Type of building ("Gold Mine")
 
     /**
      * Constructs a Gold Mine with a specific position and unique identifier.
@@ -21,14 +23,11 @@ public class GoldMine implements Buildings {
      * MODIFIES: this
      * EFFECTS: Initializes the Gold Mine with the given position and assigns default values for other attributes.
      */
-    public GoldMine(int num, Position position) {
-        this.health = 400;
+    public GoldMine(int num, Position position, int health) {
+        this.health = health;
         this.position = position;
-        //this.produceSpeed = 10;
-        this.cost = 200;
         this.status = true;
         this.num = num;
-        this.type = "Gold Mine";
     }
 
     /**
@@ -104,5 +103,16 @@ public class GoldMine implements Buildings {
     @Override
     public boolean getStatus() {
         return status;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("health", health);
+        json.put("row", position.getRow());
+        json.put("column", position.getColumn());
+        json.put("num", num);
+        json.put("type", type);
+        return json;
     }
 }

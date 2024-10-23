@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 // Represents the general type building having hp, cost.
 
 public interface Buildings {
@@ -16,4 +18,6 @@ public interface Buildings {
     int getCost();
     
     boolean getStatus();
+
+    JSONObject toJson();
 }

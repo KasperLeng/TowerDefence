@@ -44,7 +44,7 @@ public class TestMonsters {
 
     @Test
     void testAttack() {
-        Buildings archerTower = new ArcherTower(1, new Position(0, 0));
+        Buildings archerTower = new ArcherTower(1, new Position(0, 0), 150);
 
         archerGoblin.attack(archerTower, archerGoblin.getDamage());
         assertEquals(150, archerTower.getHealth());

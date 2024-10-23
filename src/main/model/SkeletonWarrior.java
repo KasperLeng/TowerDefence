@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 /**
  * Represents a Skeleton Warrior on the game screen. The Skeleton Warrior is a type of monster
  * that can move, take damage, and attack buildings.
@@ -7,9 +9,9 @@ package model;
 public class SkeletonWarrior implements Monsters {
     private int health;               // Health of the Skeleton Warrior (200 max)
     private Position position;        // Current position of the Skeleton Warrior on the game map
-    private int range;                // Attack range of the Skeleton Warrior
-    private int damage;               // Damage dealt by the Skeleton Warrior
-    //private int movingSpeed;          // Movement speed of the Skeleton Warrior
+    private final int range = 2;                // Attack range of the Skeleton Warrior
+    private final int damage = 50;               // Damage dealt by the Skeleton Warrior
+    private final int movingSpeed = 20;          // Movement speed of the Skeleton Warrior
     private boolean status;           // Status of the Skeleton Warrior (true if alive)
 
     /**
@@ -22,10 +24,7 @@ public class SkeletonWarrior implements Monsters {
      */
     public SkeletonWarrior(Position position) {
         this.health = 200;
-        this.range = 2;
-        this.damage = 50;
         this.position = position;
-        //this.movingSpeed = 20;
         this.status = true;
     }
 

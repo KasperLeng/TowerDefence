@@ -1,6 +1,10 @@
 package ui;
 
 import model.*;
+import persistence.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -9,10 +13,13 @@ import java.util.*;
  * and management of buildings and resources.
  */
 public class TowerDefenceGame {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input; // User input scanner
     private GameBoard gameBoard; // The game board instance
     private int towerCount; // Count of Archer Towers placed
     private int mineCount; // Count of Gold Mines placed
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     /**
      * Constructs a TowerDefenceGame and starts the game by calling the runGame
@@ -34,7 +41,9 @@ public class TowerDefenceGame {
      */
     public void runGame() {
         // Initialize game board
-        gameBoard = new GameBoard();
+        gameBoard = new GameBoard("Kasper's Game", 0);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         init();
 
@@ -88,6 +97,12 @@ public class TowerDefenceGame {
                 System.out.println(i.getType() + " " + i.getNum());
             }
         }
+        else if (command.equals("sg")) {
+            saveGameBoard();
+        }
+        else if (command.equals("lg")) {
+            loadGameBoard();
+        }
     }
 
     /**
@@ -132,7 +147,7 @@ public class TowerDefenceGame {
      */
     private void buyArcherTower() {
         towerCount++;
-        Buildings archerTower = new ArcherTower(towerCount, getPosition());
+        Buildings archerTower = new ArcherTower(towerCount, getPosition(), 150);
 
         if ((archerTower.getPosition().getRow() <= 0) || (archerTower.getPosition().getColumn() <= 0)) {
             System.out.println("Try again...");
@@ -178,7 +193,7 @@ public class TowerDefenceGame {
      */
     private void buyGoldMine() {
         mineCount++;
-        Buildings goldMine = new GoldMine(mineCount, getPosition());
+        Buildings goldMine = new GoldMine(mineCount, getPosition(), 100);
 
         if (gameBoard.getMoney() >= goldMine.getCost()) {
             GameBoard.addBuilding(goldMine);
@@ -202,6 +217,8 @@ public class TowerDefenceGame {
         System.out.println("\tm -> Check money");
         System.out.println("\tv -> View your buildings");
         System.out.println("\tp -> print board");
+        System.out.println("\tsg -> save game");
+        System.out.println("\tlg -> load game");
         System.out.println("\tq -> quit");
     }
 
@@ -244,6 +261,28 @@ public class TowerDefenceGame {
                 System.out.print("+---");
             }
             System.out.println("+");
+        }
+    }
+// EFFECTS: saves the gameBoard to file
+    private void saveGameBoard() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(gameBoard);
+            jsonWriter.close();
+            System.out.println("Saved " + gameBoard.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadGameBoard() {
+        try {
+            gameBoard = jsonReader.read();
+            System.out.println("Loaded " + gameBoard.getName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 }

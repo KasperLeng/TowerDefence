@@ -24,22 +24,22 @@ public class Position {
 
 
     // EFFECTS: checks if two positions are the same. 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
+    // @Override
+    // public boolean equals(Object o) {
+    //     if (this == o) {
+    //         return true;
+    //     }
 
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+    //     if (o == null || getClass() != o.getClass()) {
+    //         return false;
+    //     }
 
-        Position cell = (Position) o;
+    //     Position cell = (Position) o;
 
-        if (column != cell.column) {
-            return false;
-        }
+    //     if (column != cell.column) {
+    //         return false;
+    //     }
 
-        return row == cell.row;
-    }
+    //     return row == cell.row;
+    // }
 }

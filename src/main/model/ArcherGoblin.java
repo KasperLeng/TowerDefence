@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 /**
  * Represents an Archer Goblin in a game. Archer Goblins are enemies that have health, 
  * a position on the game map, a certain attack range, and damage-dealing capability. 
@@ -9,9 +11,9 @@ package model;
 public class ArcherGoblin implements Monsters {
     private int health;              // Goblin's health, ranges from 0 to 100
     private Position position;       // Goblin's current position on the map
-    private int range;               // Goblin's attack range
-    private int damage;              // Damage the goblin inflicts
-    //private int movingSpeed;         // Goblin's movement speed
+    private final int range = 5;               // Goblin's attack range
+    private final int damage = 20;              // Damage the goblin inflicts
+    private final int movingSpeed = 15;         // Goblin's movement speed
     private boolean status;          // True if goblin is alive, false if dead
 
     /**
@@ -25,10 +27,7 @@ public class ArcherGoblin implements Monsters {
      */
     public ArcherGoblin(Position position) {
         this.health = 100;
-        this.range = 5;
-        this.damage = 20;
         this.position = position;
-        //this.movingSpeed = 15;
         this.status = true;
     }
 

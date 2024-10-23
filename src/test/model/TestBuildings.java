@@ -13,9 +13,9 @@ public class TestBuildings {
 
     @BeforeEach
     void runBefore() {
-        archerTower = new ArcherTower(1, new Position(5, 4));
-        goldMine = new GoldMine(1, new Position(4, 5));
-        gameBoard = new GameBoard();
+        archerTower = new ArcherTower(1, new Position(5, 4), 150);
+        goldMine = new GoldMine(1, new Position(4, 5), 100);
+        gameBoard = new GameBoard("Kasper's Game", 0);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class TestBuildings {
         assertFalse(archerTower.getStatus());
 
 
-        goldMine.takeDamage(399);
+        goldMine.takeDamage(99);
         assertEquals(1, goldMine.getHealth());
         goldMine.takeDamage(2);
         assertEquals(0, goldMine.getHealth());

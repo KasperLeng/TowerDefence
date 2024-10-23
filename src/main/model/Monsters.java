@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 //Represents all types of Monsters.
 
 public interface Monsters {

@@ -1,0 +1,12 @@
+{
+    "round": 0,
+    "money": 400,
+    "buildings": [{
+        "num": 1,
+        "column": 3,
+        "health": 150,
+        "row": 2,
+        "type": "Archer Tower"
+    }],
+    "name": "Kasper's Game"
+}

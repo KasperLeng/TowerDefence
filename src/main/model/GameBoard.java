@@ -2,14 +2,21 @@ package model;
 
 import java.util.*;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 /**
  * Represents a gameboard that contains coordinates, defines board dimensions, and manages
  * buildings and monsters placed on it.
  */
-public class GameBoard {
+public class GameBoard implements Writable {
     private final int xmax = 20;        // Length of game board (number of columns)
     private final int ymax = 10;        // Width of game board (number of rows)
     private String[][] board;           // 2D array representing the game board grid
+    private String name;
+    private int round;
 
     private static ArrayList<Buildings> buildings;   // Collection of all buildings on the board
     private static ArrayList<Monsters> monsters;     // Collection of all monsters on the board
@@ -23,10 +30,12 @@ public class GameBoard {
      * EFFECTS: Initializes the board to be empty, sets starting money to 500, and 
      *          initializes empty collections for buildings and monsters.
      */
-    public GameBoard() {
+    public GameBoard(String name, int round) {
+        this.name = name;
         buildings = new ArrayList<Buildings>();
         monsters = new ArrayList<Monsters>();
         this.money = 500;
+        this.round = round;
         this.board = new String[ymax][xmax];
 
         for (int i = 0; i < board.length; i++) {
@@ -93,7 +102,7 @@ public class GameBoard {
      * EFFECTS: Prints a message indicating that the round has started.
      */
     public void startRound() {
-        System.out.println("Round Started");
+        round++;
     }
 
     /**
@@ -124,4 +133,41 @@ public class GameBoard {
     public String[][] getBoard() {
         return board;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("buildings", buildingsToJson());
+        json.put("round", round);
+        json.put("money", money);
+        return json;
+    }
+
+    // EFFECTS: returns buildings in gameboard as a JSON array
+    private JSONArray buildingsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Buildings b : buildings) {
+            jsonArray.put(b.toJson());
+        }
+        
+        return jsonArray;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public Integer getRound() {
+        return round;
+    }
+
+
+
+    
 }

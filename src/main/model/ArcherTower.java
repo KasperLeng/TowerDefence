@@ -2,6 +2,8 @@ package model;
 
 import java.lang.Math;
 
+import org.json.JSONObject;
+
 /**
  * Represents an Archer Tower in a game. Archer Towers are defensive buildings 
  * that attack nearby monsters, have health, a position on the game map, and 
@@ -10,13 +12,13 @@ import java.lang.Math;
 public class ArcherTower implements Buildings {
     private int health;              // Tower's health, ranges from 0 to 150
     private Position position;       // Tower's current position on the map
-    private int range;               // Tower's attack range
-    private int damage;              // Damage the tower inflicts per attack
-    //private int attackSpeed;         // Attack frequency of the tower
-    private int cost;                // Cost to build or maintain the tower
+    private final int range = 5;               // Tower's attack range
+    private final int damage = 10;              // Damage the tower inflicts per attack
+    private final int attackSpeed = 2;         // Attack frequency of the tower
+    private final int cost = 100;                // Cost to build or maintain the tower
     private boolean status;          // True if tower is operational, false if destroyed
     private int num;                 // Unique identifier of the tower
-    private String type;             // Tower type ("Archer Tower")
+    private final String type = "Archer Tower";             // Tower type ("Archer Tower")
 
     /**
      * Constructs an Archer Tower with a specified position and unique identifier.
@@ -27,16 +29,11 @@ public class ArcherTower implements Buildings {
      * MODIFIES: this
      * EFFECTS: Initializes Archer Tower's attributes with default values.
      */
-    public ArcherTower(int num, Position position) {
+    public ArcherTower(int num, Position position, int health) {
         this.health = 150;           // Starting health
-        this.position = position;
-        this.range = 5;              // Default attack range
-        this.damage = 10;            // Default damage per attack
-        //this.attackSpeed = 2;        // Default attack speed
-        this.cost = 100;             // Default cost
+        this.position = position;    // Position of building
         this.status = true;          // Initial operational status
         this.num = num;              // Tower's unique identifier
-        this.type = "Archer Tower";  // Tower type
     }
 
     /**
@@ -153,5 +150,16 @@ public class ArcherTower implements Buildings {
     @Override
     public boolean getStatus() {
         return status;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("health", health);
+        json.put("row", position.getRow());
+        json.put("column", position.getColumn());
+        json.put("num", num);
+        json.put("type", type);
+        return json;
     }
 }
