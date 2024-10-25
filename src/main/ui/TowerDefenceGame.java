@@ -13,7 +13,7 @@ import java.util.*;
  * and management of buildings and resources.
  */
 public class TowerDefenceGame {
-    private static final String JSON_STORE = "./data/workroom.json";
+    private static final String JSON_STORE = "./data/gameBoard.json";
     private Scanner input; // User input scanner
     private GameBoard gameBoard; // The game board instance
     private int towerCount; // Count of Archer Towers placed

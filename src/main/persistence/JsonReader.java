@@ -75,7 +75,7 @@ public class JsonReader {
             ArcherTower tower = new ArcherTower(num, position, health); // Create ArcherTower
             GameBoard.addBuilding(tower); // Add to GameBoard
 
-        } else if (type.equals("Gold Mine")) {
+        } else {
             int num = jsonObject.getInt("num");
             int health = jsonObject.getInt("health");
             GoldMine mine = new GoldMine(num, position, health); // Create GoldMine
