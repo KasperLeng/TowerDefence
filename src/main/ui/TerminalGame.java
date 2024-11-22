@@ -2,6 +2,7 @@ package ui;
 
 import model.*;
 import persistence.*;
+import javax.swing.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.*;
  * game state,
  * and management of buildings and resources.
  */
-public class TowerDefenceGame {
+public class TerminalGame extends JFrame {
     private static final String JSON_STORE = "./data/gameBoard.json";
     private Scanner input; // User input scanner
     private GameBoard gameBoard; // The game board instance
@@ -20,6 +21,7 @@ public class TowerDefenceGame {
     private int mineCount; // Count of Gold Mines placed
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    // private ScorePanel scorePanel;
 
     /**
      * Constructs a TowerDefenceGame and starts the game by calling the runGame
@@ -27,8 +29,16 @@ public class TowerDefenceGame {
      * 
      * EFFECTS: Initializes and runs the Tower Defense game.
      */
-    public TowerDefenceGame() {
+    TerminalGame() {
+        super("Tower Defence Game");
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        gameBoard = new GameBoard("Kasper's Game", 0);
         runGame();
+    }
+
+    public static void main(String[] args) {
+        new TerminalGame();
     }
 
     /**
@@ -41,7 +51,6 @@ public class TowerDefenceGame {
      */
     public void runGame() {
         // Initialize game board
-        gameBoard = new GameBoard("Kasper's Game", 0);
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
@@ -87,8 +96,6 @@ public class TowerDefenceGame {
             choiceB();
         } else if (command.equals("s")) {
             startGame();
-        } else if (command.equals("p")) {
-            printBoard();
         } else if (command.equals("m")) {
             System.out.println("Money: " + gameBoard.getMoney());
         } else if (command.equals("v")) {
@@ -152,7 +159,6 @@ public class TowerDefenceGame {
         } else {
             if (gameBoard.getMoney() >= archerTower.getCost()) {
                 GameBoard.addBuilding(archerTower);
-                gameBoard.placeBuilding(archerTower.getPosition(), "A");
                 gameBoard.spendMoney(archerTower.getCost());
             } else {
                 System.out.println("Not enough money...");
@@ -195,7 +201,6 @@ public class TowerDefenceGame {
 
         if (gameBoard.getMoney() >= goldMine.getCost()) {
             GameBoard.addBuilding(goldMine);
-            gameBoard.placeBuilding(goldMine.getPosition(), "$");
             gameBoard.spendMoney(goldMine.getCost());
         } else {
             System.out.println("Not enough money...");
@@ -218,48 +223,6 @@ public class TowerDefenceGame {
         System.out.println("\tsg -> save game");
         System.out.println("\tlg -> load game");
         System.out.println("\tq -> quit");
-    }
-
-    /**
-     * Prints the game board with buildings placed on it and the grid numbers.
-     * 
-     * EFFECTS: Displays the current state of the game board to the console.
-     */
-    public void printBoard() {
-        String[][] board = gameBoard.getBoard();
-
-        // Print the column numbers (top row)
-        System.out.print("     ");
-        for (int i = 0; i < board[0].length; i++) {
-            System.out.printf("%2d  ", i + 1); // Prints column numbers
-        }
-        System.out.println();
-
-        // Print top border
-        System.out.print("   ");
-        for (int i = 0; i < board[0].length; i++) {
-            System.out.print("+---");
-        }
-        System.out.println("+");
-
-        // Print the rows of the board
-        for (int i = 0; i < board.length; i++) {
-            // Print the row number
-            System.out.printf("%2d ", i + 1);
-
-            // Print the content of each row with vertical borders
-            for (int j = 0; j < board[i].length; j++) {
-                System.out.print("| " + board[i][j] + " ");
-            }
-            System.out.println("|");
-
-            // Print bottom border of each row
-            System.out.print("   ");
-            for (int j = 0; j < board[i].length; j++) {
-                System.out.print("+---");
-            }
-            System.out.println("+");
-        }
     }
 
     // EFFECTS: saves the gameBoard to file

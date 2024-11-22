@@ -13,9 +13,8 @@ import persistence.Writable;
  * buildings and monsters placed on it.
  */
 public class GameBoard implements Writable {
-    private final int xmax = 20; // Length of game board (number of columns)
-    private final int ymax = 10; // Width of game board (number of rows)
-    private String[][] board; // 2D array representing the game board grid
+    public static final int xmax = 30; // Length of game board (number of columns)
+    public static final int ymax = 20; // Width of game board (number of rows)
     private String name;
     private int round;
 
@@ -38,13 +37,6 @@ public class GameBoard implements Writable {
         monsters = new ArrayList<Monsters>();
         this.money = 500;
         this.round = round;
-        this.board = new String[ymax][xmax];
-
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
-                board[i][j] = " "; // Empty spaces for now
-            }
-        }
     }
 
     /**
@@ -108,33 +100,12 @@ public class GameBoard implements Writable {
     }
 
     /**
-     * Places a building on the game board at the specified position with a given
-     * symbol.
-     * 
-     * REQUIRES: position != null, symbol != null
-     * MODIFIES: board
-     * EFFECTS: Places the building symbol on the board at the specified position.
-     */
-    public void placeBuilding(Position position, String symbol) {
-        board[position.getColumn() - 1][position.getRow() - 1] = symbol;
-    }
-
-    /**
      * Returns the collection of monsters currently on the game board.
      * 
      * EFFECTS: Returns a list of all monsters.
      */
     public Object getMonsters() {
         return monsters;
-    }
-
-    /**
-     * Returns the current state of the game board as a 2D array of strings.
-     * 
-     * EFFECTS: Returns the game board grid.
-     */
-    public String[][] getBoard() {
-        return board;
     }
 
     @Override
@@ -168,6 +139,10 @@ public class GameBoard implements Writable {
 
     public Integer getRound() {
         return round;
+    }
+
+    public void addMoney(int i) {
+        money += i;
     }
 
 }

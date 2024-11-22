@@ -9,13 +9,11 @@ import org.junit.jupiter.api.Test;
 public class TestBuildings {
     private ArcherTower archerTower;
     private Buildings goldMine;
-    private GameBoard gameBoard;
 
     @BeforeEach
     void runBefore() {
         archerTower = new ArcherTower(1, new Position(5, 4), 150);
         goldMine = new GoldMine(1, new Position(4, 5), 100);
-        gameBoard = new GameBoard("Kasper's Game", 0);
     }
 
     @Test
@@ -57,7 +55,6 @@ public class TestBuildings {
     void testAttack() {
         Monsters archerGoblin1 = new ArcherGoblin(new Position(4, 4));
         Monsters archerGoblin2 = new ArcherGoblin(new Position(10, 10));
-        gameBoard.placeBuilding(new Position(2, 2), "A");
         archerTower.attack(archerGoblin1);
         archerTower.attack(archerGoblin2);
         assertEquals(90, archerGoblin1.getHealth());

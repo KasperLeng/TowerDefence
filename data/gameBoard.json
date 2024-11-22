@@ -1,12 +1,28 @@
 {
     "round": 0,
-    "money": 400,
-    "buildings": [{
-        "num": 2,
-        "column": 2,
-        "health": 150,
-        "row": 2,
-        "type": "Archer Tower"
-    }],
+    "money": 100,
+    "buildings": [
+        {
+            "num": 1,
+            "column": 13,
+            "health": 150,
+            "row": 5,
+            "type": "Archer Tower"
+        },
+        {
+            "num": 2,
+            "column": 13,
+            "health": 200,
+            "row": 8,
+            "type": "Gold Mine"
+        },
+        {
+            "num": 3,
+            "column": 10,
+            "health": 150,
+            "row": 7,
+            "type": "Archer Tower"
+        }
+    ],
     "name": "Kasper's Game"
 }

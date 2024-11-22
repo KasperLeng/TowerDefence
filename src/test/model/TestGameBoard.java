@@ -27,8 +27,7 @@ public class TestGameBoard {
         assertEquals(500, gameBoard.getMoney());
         gameBoard.startRound();
         assertEquals(1, gameBoard.getRound());
-        assertEquals(10, gameBoard.getBoard().length);
-        assertEquals(20, gameBoard.getBoard()[0].length);
+        
 
     }
 
@@ -39,11 +38,12 @@ public class TestGameBoard {
         GameBoard.addBuilding(archerTower);
         gameBoard.spendMoney(archerTower.getCost());
         assertEquals(500-archerTower.getCost(), gameBoard.getMoney());
-        gameBoard.placeBuilding(archerTower.getPosition(), "A");
         buildings.add(archerTower);
         assertEquals(buildings, gameBoard.getBuildings());
         assertEquals(buildings.get(0), gameBoard.getBuildings().get(0));
 
+        gameBoard.addMoney(100);
+        assertEquals(gameBoard.getMoney(), 500);
 
     }
 
@@ -57,6 +57,13 @@ public class TestGameBoard {
         GameBoard.addMonster(ske);
 
         assertEquals(monsters, gameBoard.getMonsters());
+    }
+
+    @Test
+    void testPositionEqual() {
+        Position testPosition1 = new Position(4, 5);
+        Position testPosition2 = new Position(4, 5);
+        assertEquals(testPosition1, testPosition2);
 
     }
 
