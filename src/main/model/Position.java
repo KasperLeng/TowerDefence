@@ -3,7 +3,7 @@ package model;
 // Represents a position - a location on the board.
 public class Position {
 
-    public static final int pixelSize = 30;
+    public static final int pixelSize = 80;
 
     private int column; // the column that the object lies in.
     private int row; // the row that this object lies in.

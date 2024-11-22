@@ -13,8 +13,8 @@ import persistence.Writable;
  * buildings and monsters placed on it.
  */
 public class GameBoard implements Writable {
-    public static final int xmax = 30; // Length of game board (number of columns)
-    public static final int ymax = 20; // Width of game board (number of rows)
+    public static final int xmax = 15; // Length of game board (number of columns)
+    public static final int ymax = 8; // Width of game board (number of rows)
     private String name;
     private int round;
 

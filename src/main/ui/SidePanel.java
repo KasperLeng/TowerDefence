@@ -47,6 +47,8 @@ public class SidePanel extends GamePanel {
         super(gb);
         gameBoard = gb;
         this.al = al;
+        selectedTower = -1;
+        selectedMine = -1;
         setBounds(0, 0, 210, height);
         setBackground(Color.LIGHT_GRAY);
         setLayout(null);
@@ -211,7 +213,6 @@ public class SidePanel extends GamePanel {
             map.updateMap(); // Refresh the map to show the loaded buildings
         }
     }
-    
 
     /*
      * Initializes labels
@@ -244,7 +245,6 @@ public class SidePanel extends GamePanel {
 
         addLabelsToPanel();
     }
-
 
     /*
      * Adds the labels to panel
@@ -281,17 +281,22 @@ public class SidePanel extends GamePanel {
     }
 
     /*
-     * Returns the index of selected towers
+     * Returns the index of selected buildings
      */
-    private void getSelectedTower() {
+    private void getSelectedBuilding() {
         ArrayList<Buildings> buildings = gameBoard.getBuildings();
         for (int i = 0; i < buildings.size(); i++) {
             Position pos = buildings.get(i).getPosition();
-            if ((buildings.get(i).getType() + " " + pos.getRow() + ", " + (pos.getColumn()))
+            if (archerTowerComboBox.getSelectedItem() == null) {
+                selectedTower = -1;
+            } else if (goldMineComboBox.getSelectedItem() == null) {
+                selectedMine = -1;
+            } else if ((buildings.get(i).getType() + " " + pos.getRow() + ", " + (pos.getColumn()))
                     .equals(archerTowerComboBox.getSelectedItem())) {
                 selectedTower = i;
-            } else if ((buildings.get(i).getType() + " " + pos.getRow() + ", " + (pos.getColumn()))
-                    .equals(goldMineComboBox.getSelectedItem())) {
+            } else if (goldMineComboBox.getSelectedItem() != null
+                    && (buildings.get(i).getType() + " " + pos.getRow() + ", " + (pos.getColumn()))
+                            .equals(goldMineComboBox.getSelectedItem())) {
                 selectedMine = i;
             }
         }
@@ -310,17 +315,29 @@ public class SidePanel extends GamePanel {
         } else if ("SAVE_GAME".equals(command)) {
             super.saveGameBoard();
         } else if ("SELL_TOWER".equals(command)) {
-            getSelectedTower();
-            gameBoard.getBuildings().remove(selectedTower);
-            gameBoard.addMoney(100);
-            updateLabels();
-            map.updateMap();
+            getSelectedBuilding();
+            try {
+                if (selectedTower >= 0) {
+                    gameBoard.getBuildings().remove(selectedTower);
+                    gameBoard.addMoney(100);
+                    updateLabels();
+                    map.updateMap();
+                }
+            } catch (IndexOutOfBoundsException e) {
+                // Expected
+            }
         } else if ("SELL_MINE".equals(command)) {
-            getSelectedTower();
-            gameBoard.getBuildings().remove(selectedMine);
-            gameBoard.addMoney(200);
-            updateLabels();
-            map.updateMap();
+            getSelectedBuilding();
+            try {
+                if (selectedMine >= 0) {
+                    gameBoard.getBuildings().remove(selectedMine);
+                    gameBoard.addMoney(200);
+                    updateLabels();
+                    map.updateMap();
+                }
+            } catch (IndexOutOfBoundsException e) {
+                // Expected
+            }
         }
 
     }

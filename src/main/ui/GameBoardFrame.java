@@ -19,7 +19,7 @@ public class GameBoardFrame extends JFrame {
         setTitle("Village Raiders");
         add(sidePanel);
         add(map);
-        setSize(width + 195, height + 10);
+        setSize(width + 230, height + 30);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(false);
         centreOnScreen();

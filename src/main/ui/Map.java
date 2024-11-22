@@ -19,11 +19,17 @@ public class Map extends GamePanel {
     private int width = GameBoard.xmax * Position.pixelSize;
     private SidePanel sidePanel; // Reference to the SidePanel
     private Image backgroundImage; // Background
+    private Image towerImage;
+    private Image mineImage;
 
     public Map(GameBoard gb, ActionListener al) throws FileNotFoundException {
         super(gb);
         gameBoard = gb;
         backgroundImage = new ImageIcon(getClass().getResource("/resources/background.png")).getImage();
+        towerImage = new ImageIcon(getClass().getResource("/resources/tower.png")).getImage();
+        mineImage = new ImageIcon(getClass().getResource("/resources/mine.png")).getImage();
+        
+
         setBounds(210, 0, width, height);
 
         addMouseListener(new MouseAdapter() {
@@ -97,12 +103,10 @@ public class Map extends GamePanel {
         int y = building.getPosition().getRow() * Position.pixelSize;
 
         if (building.getType().equals("Archer Tower")) {
-            g.setColor(Color.RED);
+            g.drawImage(towerImage, x+210, y, Position.pixelSize, Position.pixelSize, this);
         } else if (building.getType().equals("Gold Mine")) {
-            g.setColor(Color.YELLOW);
+            g.drawImage(mineImage, x+210, y, Position.pixelSize, Position.pixelSize, this);
         }
-
-        g.fillRect(x + 210, y, Position.pixelSize, Position.pixelSize); // Draw building
     }
 
     @Override
