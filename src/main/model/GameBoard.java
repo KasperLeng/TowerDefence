@@ -158,7 +158,7 @@ public class GameBoard implements Writable {
     public void buildingRemoved(int selectedTower) {
         Buildings building = buildings.get(selectedTower);
         EventLog.getInstance().logEvent(new Event(building.getType() + " at Position " + building.getPosition().getRow()
-                + " ," + building.getPosition().getColumn() + " removed"));
+                + ", " + building.getPosition().getColumn() + " removed"));
     }
 
     public void gameSaved() {
