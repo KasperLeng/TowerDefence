@@ -48,6 +48,8 @@ public class GameBoard implements Writable {
      */
     public static void addBuilding(Buildings building) {
         buildings.add(building);
+        EventLog.getInstance().logEvent(new Event(building.getType() + " Added at Position "
+                + building.getPosition().getRow() + " ," + building.getPosition().getColumn()));
     }
 
     /**
@@ -143,6 +145,24 @@ public class GameBoard implements Writable {
 
     public void addMoney(int i) {
         money += i;
+    }
+
+    public void newGame() {
+        EventLog.getInstance().logEvent(new Event("New Game Created"));
+    }
+
+    public void loadGame() {
+        EventLog.getInstance().logEvent(new Event("Game Loaded"));
+    }
+
+    public void buildingRemoved(int selectedTower) {
+        Buildings building = buildings.get(selectedTower);
+        EventLog.getInstance().logEvent(new Event(building.getType() + " at Position " + building.getPosition().getRow()
+                + " ," + building.getPosition().getColumn() + " removed"));
+    }
+
+    public void gameSaved() {
+        EventLog.getInstance().logEvent(new Event("Game Saved"));
     }
 
 }

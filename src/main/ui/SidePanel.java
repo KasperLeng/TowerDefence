@@ -43,6 +43,8 @@ public class SidePanel extends GamePanel {
     private JComboBox<String> archerTowerComboBox;
     private JComboBox<String> goldMineComboBox;
 
+    // MODIFIES: this
+    // EFFECTS: initializes a the buttons in the side panel.
     public SidePanel(GameBoard gb, ActionListener al) throws FileNotFoundException {
         super(gb);
         gameBoard = gb;
@@ -307,17 +309,18 @@ public class SidePanel extends GamePanel {
      */
     @Override
     protected void processCommand(String command) {
-        System.out.println("Command received: " + command);
         if ("BUY_TOWER".equals(command)) {
             canSelectPosition = 1; // Set state to buy Archer Tower
         } else if ("BUY_MINE".equals(command)) {
             canSelectPosition = 2; // Set state to buy Gold Mine
         } else if ("SAVE_GAME".equals(command)) {
             super.saveGameBoard();
+            gameBoard.gameSaved();
         } else if ("SELL_TOWER".equals(command)) {
             getSelectedBuilding();
             try {
                 if (selectedTower >= 0) {
+                    gameBoard.buildingRemoved(selectedTower);
                     gameBoard.getBuildings().remove(selectedTower);
                     gameBoard.addMoney(100);
                     updateLabels();
@@ -330,6 +333,7 @@ public class SidePanel extends GamePanel {
             getSelectedBuilding();
             try {
                 if (selectedMine >= 0) {
+                    gameBoard.buildingRemoved(selectedMine);
                     gameBoard.getBuildings().remove(selectedMine);
                     gameBoard.addMoney(200);
                     updateLabels();
@@ -367,7 +371,6 @@ public class SidePanel extends GamePanel {
                 gameBoard.spendMoney(archerTower.getCost());
                 updateLabels();
                 map.updateMap(); // Update map to reflect the placed building
-                System.out.println("Archer Tower placed at: " + position.getRow() + ", " + position.getColumn());
             }
             canSelectPosition = 0;
         }
@@ -384,7 +387,6 @@ public class SidePanel extends GamePanel {
                 gameBoard.spendMoney(goldMine.getCost());
                 updateLabels();
                 map.updateMap(); // Update map to reflect the placed building
-                System.out.println("Gold Mine placed at: " + position.getRow() + ", " + position.getColumn());
             }
             canSelectPosition = 0;
         }

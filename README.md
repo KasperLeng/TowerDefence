@@ -18,3 +18,10 @@ A *required* list:
 - As a user, I would want to **save** my game and start from where I ended.
 - As a user, I would want to have my **progress** of the game from last time. 
 - As a user, when I start the game, I want to be given the option to start a **new game** or **continue**.
+
+## Sample of events that occur:
+ - *New Game Created* When new game is created.
+ - *Game Loaded* When game saved is loaded.
+ - *Building Added at Position row, column* when building is bought.
+ - *Building at Position row, column removed* when building is sold.
+ - *Game Closed* when user exits program.

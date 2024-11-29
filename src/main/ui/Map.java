@@ -22,6 +22,8 @@ public class Map extends GamePanel {
     private Image towerImage;
     private Image mineImage;
 
+    // MODIFIES: this
+    // EFFECTS: initializes a the map for users to put their houses.
     public Map(GameBoard gb, ActionListener al) throws FileNotFoundException {
         super(gb);
         gameBoard = gb;
@@ -38,7 +40,6 @@ public class Map extends GamePanel {
                 // Validate the click is within bounds
                 if (isValidClick(e.getX(), e.getY())) {
                     Position closestPosition = getClosestGridPosition(e.getX(), e.getY());
-                    System.out.println("Closest: " + closestPosition.getRow() + " ," + closestPosition.getColumn());
                     if (sidePanel != null && sidePanel.getState() == 1) {
                         sidePanel.placeArcherTower(closestPosition);
                     } else if (sidePanel != null && sidePanel.getState() == 2) {

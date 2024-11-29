@@ -4,31 +4,31 @@
     "buildings": [
         {
             "num": 1,
-            "column": 6,
+            "column": 1,
             "health": 150,
-            "row": 7,
+            "row": 2,
             "type": "Archer Tower"
         },
         {
             "num": 2,
-            "column": 4,
+            "column": 3,
             "health": 150,
-            "row": 9,
+            "row": 3,
             "type": "Archer Tower"
         },
         {
             "num": 3,
-            "column": 3,
-            "health": 150,
-            "row": 4,
-            "type": "Archer Tower"
+            "column": 1,
+            "health": 200,
+            "row": 3,
+            "type": "Gold Mine"
         },
         {
             "num": 4,
-            "column": 2,
-            "health": 200,
-            "row": 7,
-            "type": "Gold Mine"
+            "column": 1,
+            "health": 150,
+            "row": 4,
+            "type": "Archer Tower"
         }
     ],
     "name": "Kasper's Game"

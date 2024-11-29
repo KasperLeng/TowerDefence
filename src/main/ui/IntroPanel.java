@@ -1,7 +1,11 @@
 package ui;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import model.GameBoard;
@@ -12,10 +16,10 @@ import model.GameBoard;
 public class IntroPanel extends GamePanel {
     private JButton newGame;
     private JButton loadGame;
-    private JButton gameLog;
     private SidePanel sidePanel;
     private Map map;
     private ActionListener al;
+    private Image backgroundImage;
 
     /*
      * MODIFIES: this
@@ -25,18 +29,17 @@ public class IntroPanel extends GamePanel {
         super(gb);
         gameBoard = gb;
         this.al = al;
+        backgroundImage = new ImageIcon(getClass().getResource("/resources/introBackground.png")).getImage();
 
         // Add buttons
         newGame = new JButton("NEW GAME");
         loadGame = new JButton("LOAD GAME");
-        gameLog = new JButton("GAME LOG");
+
 
         setUpButtons(newGame);
-        newGame.setBounds(190, 390, 150, 40);
+        newGame.setBounds(190, 390, 150, 60);
         setUpButtons(loadGame);
-        loadGame.setBounds(590, 390, 150, 40);
-        setUpButtons(gameLog);
-        gameLog.setBounds(40, 30, 80, 35);
+        loadGame.setBounds(590, 390, 150, 60);
         addButtons();
 
         // Initialize map and sidePanel without cross-references
@@ -53,12 +56,12 @@ public class IntroPanel extends GamePanel {
      * EFFECTS: Configures the appearance and behavior of the given button.
      */
     private JButton setUpButtons(JButton btn) {
-        btn.setForeground(java.awt.Color.BLACK);
-        btn.setBackground(java.awt.Color.WHITE);
+        btn.setForeground(java.awt.Color.WHITE);
+        btn.setBackground(java.awt.Color.BLACK);
         btn.setFocusable(false);
         btn.addActionListener(al);
         btn.setBorder(null);
-        btn.setBorderPainted(false);
+        btn.setBorderPainted(true);
         btn.setContentAreaFilled(false);
         btn.setOpaque(false);
         return btn;
@@ -71,7 +74,17 @@ public class IntroPanel extends GamePanel {
     private void addButtons() {
         add(newGame);
         add(loadGame);
-        add(gameLog);
+    }
+
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        if (backgroundImage != null) {
+            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), null);
+        }
+
     }
 
     /*
@@ -83,14 +96,14 @@ public class IntroPanel extends GamePanel {
     protected void processCommand(String command) {
         if (command.equals("NEW GAME")) {
             new GameBoardFrame(sidePanel, map);
+            gameBoard.newGame();
             Main.disposeIntro();
         } else if (command.equals("LOAD GAME")) {
             sidePanel.loadGame();
             sidePanel.updateLabels();
+            gameBoard.loadGame();
             new GameBoardFrame(sidePanel, map);
             Main.disposeIntro();
-        } else if (command.equals("GAME LOG")) {
-            // Handle game log command
         } else {
             // Delegate any side panel commands to sidePanel's processCommand
             sidePanel.processCommand(command);
