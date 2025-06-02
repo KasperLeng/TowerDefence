@@ -1,6 +1,6 @@
 {
     "round": 0,
-    "money": 0,
+    "money": 100,
     "buildings": [
         {
             "num": 1,
@@ -18,13 +18,6 @@
         },
         {
             "num": 3,
-            "column": 2,
-            "health": 150,
-            "row": 3,
-            "type": "Archer Tower"
-        },
-        {
-            "num": 4,
             "column": 2,
             "health": 150,
             "row": 4,
